@@ -8,7 +8,6 @@ type AppProps = {
 
 const App = ({ redirected }: AppProps) => {
 	const { code } = queryString.parse(window.location.search);
-	console.log(code);
 
 	const [attemptedAuth, setAttemptedAuth] = useState(false);
 
@@ -65,18 +64,17 @@ const App = ({ redirected }: AppProps) => {
 		});
 		const res = await fetch(deauthUrl, {
 			method: 'POST',
-			// headers: { Authorization: `Bearer ${token}` },
 		});
+		console.log(res);
 	};
 
-	// const fetchActivities = async (token: any) => {
-	const fetchActivities = async () => {
+	const fetchActivities = async (token: any) => {
 		const res = await fetch(
 			'https://www.strava.com/api/v3/athlete/activities',
 			{
 				method: 'GET',
 				headers: {
-					Authorization: `Bearer ${'ee5a95fc991da8757ce5422de974ce3f3a25e3d3'}`,
+					Authorization: `Bearer ${token}`,
 				},
 			}
 		);
